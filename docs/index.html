@@ -390,7 +390,7 @@
 			Today, I’m looking to apply the same analytical thinking, statistical analysis, coding expertise, and problem-solving mindset to data science, machine learning, and applied research challenges.
           </p>
         </div>
-        <div class="grid-2">
+        <div class="grid-1">
           <div class="content-card" style="border-left-color: var(--navy);">
             <h3>Research Interests</h3>
             <div>
@@ -400,17 +400,12 @@
               <span class="tag">Scientific Computing</span>
 			  <span class="tag">Simulation and Modeling</span>
 			  <span class="tag">Paremteric Parameterization</span>
+			  <span class="tag">Predictive Analysis</span>
+			  <span class="tag">Statistics</span>
+
             </div>
           </div>
-          <div class="content-card" style="border-left-color: var(--navy);">
-            <h3>Contact</h3>
-            <p>
-              <strong>Email:</strong> you@university.edu<br/>
-              <strong>Office:</strong> Physics Building, Room 000<br/>
-              <strong>Institution:</strong> [Your University]<br/>
-              <strong>Department:</strong> Physics &amp; Astronomy
-            </p>
-          </div>
+
         </div>
       </div>
 
@@ -553,7 +548,7 @@
       </header>
       <div class="sub-tab-bar">
         <button class="sub-tab-btn active" id="stab-research-overview" onclick="showSub('research','overview',this)">Overview</button>
-        <button class="sub-tab-btn" id="stab-research-fantomas" onclick="showSub('research','fantomas',this)">Fantomas4QCD</button>
+        <button class="sub-tab-btn" id="stab-research-fantomas" onclick="showSub('research','fantomas',this)">Fantômas4QCD</button>
         <button class="sub-tab-btn" id="stab-research-l2" onclick="showSub('research','l2',this)">L2 Sensitivity</button>
         <button class="sub-tab-btn" id="stab-research-dataviz" onclick="showSub('research','dataviz',this)">Data Visualization</button>
       </div>
@@ -563,43 +558,44 @@
         <div class="content-card">
           <h3>Research Overview</h3>
           <p>
-            My work broadly addresses fundamental questions in quantum chromodynamics — the
-            theory governing the strong nuclear force. I combine analytical techniques with
-            large-scale numerical computation to probe the structure of hadrons and extract
-            precision predictions from lattice QCD simulations.
-          </p>
-          <p>
-            A central thread across my projects is developing better computational tools and
-            statistical methodologies, including the Fantomas4QCD framework, rigorous L2
-            sensitivity analyses, and interactive visualization platforms for high-dimensional
-            physics datasets.
+            During my PhD at SMU, I focused on analyzing the internal structure of subatomic particles (like the pion) using parton distribution function models. Parton distribution functions (PDFs) are data-driven models derived from high-energy collider experiments, including the currently operating Large Hadron Collider (LHC) and the soon-to-be-built Electron-Ion Collider (EIC). These models describe how a particle’s momentum is distributed among its constituent quarks and gluons — a cornerstone of modern particle physics research.
+			<p>
+			I developed new modeling approaches for pion PDFs and analyzed how different experimental datasets affected the model’s results. The pion is crucial in holding atomic nuclei together (via the strong force), which is why it’s an important particle to study.
+			<p>
+			Although my work centers on structured, interpretable alternatives to neural networks, it draws on many of the same statistical foundations, including gradient descent optimization, chi-squared loss minimization, and model reliability techniques. I employed methods such as model verification, bootstrap-based uncertainty estimation, and comparative analysis across multiple parameterizations to assess assess model stability and robustness. This overlap gives me strong cross-compatibility with modern machine learning workflows and tools, and also enabled me to train and evaluate several baseline models as part of my broader data science development.
+			<p>
+			You can find all of my published work on <a href="https://inspirehep.net/authors/2692829" target="_blank">Inspire HEP</a>.
           </p>
         </div>
         <div class="grid-2">
           <div class="content-card" style="cursor:pointer;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 24px rgba(13,27,42,0.14)'" onmouseout="this.style.boxShadow=''" onclick="showSub('research','fantomas',document.getElementById('stab-research-fantomas'))">
-            <h3>Fantomas4QCD →</h3>
-            <p>A computational framework for efficient extraction of QCD observables. Combines Bayesian inference with optimized numerical routines for HPC deployment.</p>
+            <h3>Fantômas4QCD →</h3>
+            <p>The Fantômas4QCD project resulted in the development of a custom PDF modeling module using Bézier curves as the core technique (essentially using them as universal function approximators). This approach combines the transparency of a simple polynomial model with the flexibility of a neural network, allowing us to explore a much wider range of viable solutions in QCD models.</p>
             <span class="tag">Lattice QCD</span><span class="tag">C++ / Python</span>
           </div>
           <div class="content-card" style="cursor:pointer;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 24px rgba(13,27,42,0.14)'" onmouseout="this.style.boxShadow=''" onclick="showSub('research','l2',document.getElementById('stab-research-l2'))">
             <h3>L2 Sensitivity →</h3>
-            <p>Statistical methodology for quantifying the influence of individual datasets on global QCD analyses using second-order response of the fit function.</p>
+            <p>To accurately interpret theoretical predictions, it’s important to understand how individual datasets influence the fitted model. L2 sensitivity quantifies this by calculating how much the chi-squared value changes when PDFs are varied by one standard deviation.
+			<p>
+			This method highlights which datasets exert the most pull on the fit — helping identify potential outliers, inconsistencies, or overreliance on specific data.</p>
             <span class="tag">Statistics</span><span class="tag">HEP Fits</span>
           </div>
           <div class="content-card" style="cursor:pointer;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 24px rgba(13,27,42,0.14)'" onmouseout="this.style.boxShadow=''" onclick="showSub('research','dataviz',document.getElementById('stab-research-dataviz'))">
             <h3>Data Visualization →</h3>
-            <p>Interactive tools for exploring multi-dimensional lattice datasets and communicating physics results to both specialists and broader audiences.</p>
+            <p>Scientific results are only valuable if they can be effectively communicated. Throughout my research, I’ve emphasized clear data visualization to convey key findings in presentations, papers, and collaborations.
+			<p>
+			Using tools like Mathematica, ManeParse, and CERN’s ROOT, I’ve created visualizations that reveal model behavior, compare datasets, and highlight statistical significance in an accessible and digestible way.</p>
             <span class="tag">D3.js</span><span class="tag">Python</span>
           </div>
         </div>
       </div>
 
-      <!-- FANTOMAS4QCD -->
+      <!-- Fantômas4QCD -->
       <div class="sub-section" id="sub-research-fantomas">
         <div class="content-card">
-          <h3>Fantomas4QCD</h3>
+          <h3>Fantômas4QCD</h3>
           <p>
-            Fantomas4QCD is a software framework developed to automate the extraction of
+            Fantômas4QCD is a software framework developed to automate the extraction of
             hadronic matrix elements from lattice QCD correlation functions. The framework
             integrates modern Bayesian inference techniques with highly optimized numerical
             routines designed for high-performance computing environments.
@@ -617,7 +613,7 @@
         </div>
         <div class="content-card" style="border-left-color:var(--navy);">
           <h3>Key Results</h3>
-          <p>[Describe a key result from this project. E.g., "Using Fantomas4QCD, we extracted the nucleon axial charge with X% precision, consistent with experimental measurements and improving on prior lattice determinations by a factor of Y."]</p>
+          <p>[Describe a key result from this project. E.g., "Using Fantômas4QCD, we extracted the nucleon axial charge with X% precision, consistent with experimental measurements and improving on prior lattice determinations by a factor of Y."]</p>
         </div>
       </div>
 
@@ -714,7 +710,7 @@
               Hosted by: SMU Scholar · Southern Methodist University
             </p>
           </div>
-          <a href="https://scholar.smu.edu/hum_sci_physics_etds/20/ target="_blank" rel="noopener"
+          <a href="https://scholar.smu.edu/hum_sci_physics_etds/20/" target="_blank" rel="noopener"
              style="display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:var(--navy); color:var(--gold2); text-decoration:none; font-size:0.8rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:0.7rem 1.2rem; border-radius:4px; transition:background 0.2s; text-align:center;"
              onmouseover="this.style.background='#1a2f47'" onmouseout="this.style.background='var(--navy)'">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg>
@@ -738,7 +734,7 @@
               Format: PDF · Defense presentation
             </p>
           </div>
-          <a href="[YOUR_SLIDES_FILE_OR_URL_HERE]" download
+          <a href="docs/resume/Lucas_Defense_slides.pdfdocs/resume/Lucas_Defense_slides.pdf" download
              style="display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:transparent; color:var(--navy); border:1.5px solid var(--navy); text-decoration:none; font-size:0.8rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:0.7rem 1.2rem; border-radius:4px; transition:all 0.2s; text-align:center;"
              onmouseover="this.style.background='var(--navy)';this.style.color='var(--gold2)'" onmouseout="this.style.background='transparent';this.style.color='var(--navy)'">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg>
