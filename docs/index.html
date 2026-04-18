@@ -646,13 +646,6 @@
 				document.getElementById('lightbox').classList.remove('open');
 			  }
 			</script>
-}
-			<!-- Lightbox overlay -->
-			<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-			  <span class="lightbox-close">✕</span>
-			  <img id="lightbox-img" src="" alt="">
-			  <p class="lightbox-caption" id="lightbox-caption"></p>  <!-- this must be here -->
-			</div>
 
 			<!-- Gallery -->
 			<div class="gallery-grid">
@@ -867,6 +860,13 @@
   </div>
 
 </main>
+
+<!-- Lightbox overlay — must be outside all content cards -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt="">
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
