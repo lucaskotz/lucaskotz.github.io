@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://lucaskotz.github.io/sitemap.xml
