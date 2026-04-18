@@ -598,27 +598,115 @@
       <div class="sub-section" id="sub-research-fantomas">
         <div class="content-card">
           <h3>Fantômas4QCD</h3>
+		    <img src="/Fanto/smu-flying.webp" style="float:right; width:250px; margin:0 0 1rem 1.5rem; border-radius:6px;">
           <p>
-            Fantômas4QCD is a software framework developed to automate the extraction of
-            hadronic matrix elements from lattice QCD correlation functions. The framework
-            integrates modern Bayesian inference techniques with highly optimized numerical
-            routines designed for high-performance computing environments.
-          </p>
-          <p>
+            Our team set out to create a new, flexible way to model parton distribution functions (PDFs) – the statistical profiles that show how a particle’s momentum is shared among its quarks and gluons.
+		  <p>
+			We applied Bézier curves in our PDF modeling, giving our solution the clarity of a simple mathematical formula and the adaptability of a neural network – a unique combination not seen in previous models.
+		  <p>
+			The Fantômas module we built quantifies uncertainties in the pion’s structure that earlier models could not measure, providing new insights for QCD analysis.
+		  <p>
+			The xFitter program with the Fantômas module implemented is found here.
+		  
+		  <h3>Bézier curves: From cars to physics</h3>
+		   <img src="/Fanto/Bornholm_Rundt_2012_(2012-07-08),_by_Klugschnacker_modified.webp" style="float:right; width:250px; margin:0 0 1rem 1.5rem; border-radius:6px;">
+		    To better describe the internal structure of the pion (and other hadrons), we use Bézier curves, originally developed for car design.
+		  <p>
+			Invented by Paul de Casteljau (Citroën, 1958) and Pierre Bézier (Renault, 1960), Bézier curves were first used to model smooth car body shapes using only a few control points. The Citroën DS (left) was one of the first cars designed using this technology, which later became foundational in computer-aided design (CAD).
+		  <p>
+			Today, more than 60 years later, we apply the same mathematical framework in high-energy physics. Bézier curves allow us to construct smooth, continuous, and highly adaptable functions for modeling PDFs. Their interpretability and flexibility make them ideal for capturing model-dependent uncertainty in a physically meaningful way.
+			
+		  <h3>How we extract PDFs using Bézier curves</h3>
+		  <img src="/Fanto/Screenshot+2025-05-29+085137.webp" style="float:left; width:250px; margin:0 1.5rem 1rem 0; border-radius:6px;">
+		  <p>
+		    Since parton distribution functions (PDFs) are not directly observable, we must infer them from experimental data — specifically, measurements from fixed-target and collider experiments.
+		  <p>
+			Our module was implemented into xFitter, an open-source framework for global QCD analyses. xFitter predicts theoretical models by using a gradient-descent algorithm (Minuit) to minimize the chi-squared (χ²) goodness-of-fit value to identify the best-fit Bézier parameterization for the given data.
+		  <p>
+			By adjusting the number and location of control points, the module can scan a wide range of model possibilities, giving us a more complete picture of the theoretical uncertainties in PDF extraction.
+			
+			<style>
+			  .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.75rem; margin-top:1rem; }
+			  .gallery-grid img { width:100%; border-radius:6px; aspect-ratio:4/3; object-fit:cover; cursor:pointer; transition:opacity 0.2s, transform 0.2s; }
+			  .gallery-grid img:hover { opacity:0.85; transform:scale(1.02); }
+			  .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:999; align-items:center; justify-content:center; flex-direction:column; gap:1rem; }
+			  .lightbox.open { display:flex; }
+			  .lightbox img { max-width:90vw; max-height:80vh; border-radius:8px; object-fit:contain; }
+			  .lightbox-caption { color:white; font-size:0.88rem; text-align:center; max-width:600px; line-height:1.6; opacity:0.85; padding:0 1rem; }
+			  .lightbox-close { position:absolute; top:1.5rem; right:1.5rem; color:white; font-size:2rem; cursor:pointer; line-height:1; }
+			</style>
+
+			<!-- Lightbox overlay -->
+			<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+			  <span class="lightbox-close">✕</span>
+			  <img id="lightbox-img" src="" alt="">
+			  <p class="lightbox-caption" id="lightbox-caption"></p>
+			</div>
+
+			<!-- Gallery -->
+			<div class="gallery-grid">
+			  <img src="/Fanto/Screenshot+2025-05-29+085057.webp" data-caption="Fifty Bézier curves fitted to randomly fluctuated data using fixed settings, illustrating aleatoric uncertainty via bootstrapping." onclick="openLightbox(this)">
+			  <img src="/Fanto/Screenshot+2025-05-29+085043.webp" data-caption="Fifty Bézier curves fitted to the same data using varied settings, illustrating epistemic uncertainty and model dependency." onclick="openLightbox(this)">
+			  <img src="/Fanto/Screenshot+2025-05-29+082527.webp" data-caption="Kinematic coverage of data points from various pion experiments." onclick="openLightbox(this)">
+			  <img src="/Fanto/Screenshot+2025-05-29+082612.webp" data-caption="Gluon PDFs showing the range of solutions obtained by varying the number, positions, and treatment of control points during fitting." onclick="openLightbox(this)">
+			  <img src="/Fanto/Screenshot+2025-05-29+082559.webp" data-caption="Quark sea PDFs showing the range of solutions obtained by varying the number, positions, and treatment of control points during fitting." onclick="openLightbox(this)">
+			  <img src="/Fanto/Screenshot+2025-05-29+082801.webp" data-caption="Gluon PDFs from selected fits that satisfy the imposed χ² condition." onclick="openLightbox(this)">
+			  <img src="/Fanto/Screenshot+2025-05-29+082743.webp" data-caption="Quark sea PDFs from selected fits that satisfy the imposed χ² condition." onclick="openLightbox(this)">
+			  <img src="/Fanto/Screenshot+2025-05-29+082702.webp" data-caption="Constituent pion quark (valence) PDFs from selected fits that satisfy the imposed χ² condition." onclick="openLightbox(this)">
+			  <img src="/Fanto/Screenshot+2025-05-29+082826.webp" data-caption="Combined pion PDFs showing contributions from both aleatoric and epistemic uncertainty." onclick="openLightbox(this)">
+			</div>
+
+			<script>
+			  function openLightbox(imgEl) {
+				document.getElementById('lightbox-img').src = imgEl.src;
+				document.getElementById('lightbox-caption').textContent = imgEl.dataset.caption || '';
+				document.getElementById('lightbox').classList.add('open');
+			  }
+			  function closeLightbox() {
+				document.getElementById('lightbox').classList.remove('open');
+			  }
+			</script>
+			
+		  <h3>Extracted PDFs from pion data</h3>
+		  <img src="your-methodology-image.jpg" style="float:right; width:250px; margin:0 0 1rem 1.5rem; border-radius:6px;">
+		  <p>
+		    From the hundreds of solutions generated by the Fantômas module, we selected five good fits that captured the full range of observed features.
+		  <p>
+			These were combined into a single model that incorporates both aleatoric (statistical) and epistemic (model-based) uncertainties — providing a more comprehensive understanding of the pion's structure.
+		  <p>
+			The complete pion PDF set is located <a href="https://cteq-tea.gitlab.io/project/00pdfs/#mesonPDFs" target="_blank">here</a>.
+
+
+		  <h3>Visualizing pion data</h3>
+			After identifying the best-fit models, we analyzed their statistical behavior and interrelationships.
+		  <p>
+		  <!-- Gallery -->
+			<div class="gallery-grid">
+			<img src="/Fanto/Screenshot+2025-05-29+084458.webp" data-caption="Self-correlation heat map of the pion gluon PDF at fixed energy scale, plotted as a function of x on each axis." onclick="openLightbox(this)">
+			<img src="/Fanto/Screenshot+2025-05-29+084433.webp" data-caption="Self-correlation heat map of the pion quark sea PDF at fixed energy scale, plotted as a function of x on each axis." onclick="openLightbox(this)">
+			<img src="/Fanto/Screenshot+2025-05-29+084416.webp" data-caption="Self-correlation heat map of the pion valence PDF at fixed energy scale, plotted as a function of x on each axis." onclick="openLightbox(this)">
+			<img src="/Fanto/Screenshot+2025-05-29+084555.webp" data-caption="Correlation heat map between the pion gluon and quark sea PDFs at a fixed energy scale, plotted as a function of x on each axis." onclick="openLightbox(this)">
+			<img src="/Fanto/Screenshot+2025-05-29+084540.webp" data-caption="Correlation heat map between the pion gluon and valence PDFs at a fixed energy scale, plotted as a function of x on each axis." onclick="openLightbox(this)">
+			<img src="/Fanto/Screenshot+2025-05-29+084521.webp" data-caption="Correlation heat map between the pion quark sea and valence PDFs at a fixed energy scale, plotted as a function of x on each axis." onclick="openLightbox(this)">
+			<img src="/Fanto/Screenshot+2025-05-29+082843 (1).webp" data-caption="Total momentum fractions carried by the gluon and quark sea in recent pion PDF studies. The FantoPDF combination highlights an anticorrelation between these two contributions." onclick="openLightbox(this)">
+			<img src="/Fanto/Screenshot+2025-05-29+084630.webp" data-caption="Normalized distributions of momentum fractions from Monte Carlo replicas, comparing fits excluding the leading neutron dataset (transparent) and including it (opaque)." onclick="openLightbox(this)">
+			</div>
+		  </p>
+		<!--
+		  <p>
             Key capabilities include [feature 1], [feature 2], and [feature 3]. The codebase
             is designed for deployment on HPC clusters and has been validated against benchmark
             calculations from the literature.
           </p>
           <p>This project is in collaboration with [Collaborators / Institutions].</p>
+		-->
+
           <div style="margin-top:1rem;">
-            <span class="tag">Open Source</span><span class="tag">Python / C++</span>
+            <span class="tag">Open Source</span><span class="tag">C++ / Fortran</span>
             <span class="tag">HPC</span><span class="tag">Bayesian Inference</span>
           </div>
         </div>
-        <div class="content-card" style="border-left-color:var(--navy);">
-          <h3>Key Results</h3>
-          <p>[Describe a key result from this project. E.g., "Using Fantômas4QCD, we extracted the nucleon axial charge with X% precision, consistent with experimental measurements and improving on prior lattice determinations by a factor of Y."]</p>
-        </div>
+
       </div>
 
       <!-- L2 SENSITIVITY -->
