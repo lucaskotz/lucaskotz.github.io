@@ -636,11 +636,16 @@
 			  .lightbox-close { position:absolute; top:1.5rem; right:1.5rem; color:white; font-size:2rem; cursor:pointer; line-height:1; }
 			</style>
 
+			function openLightbox(imgEl) {
+			  document.getElementById('lightbox-img').src = imgEl.src;
+			  document.getElementById('lightbox-caption').textContent = imgEl.dataset.caption || '';
+			  document.getElementById('lightbox').classList.add('open');
+}
 			<!-- Lightbox overlay -->
 			<div class="lightbox" id="lightbox" onclick="closeLightbox()">
 			  <span class="lightbox-close">✕</span>
 			  <img id="lightbox-img" src="" alt="">
-			  <p class="lightbox-caption" id="lightbox-caption"></p>
+			  <p class="lightbox-caption" id="lightbox-caption"></p>  <!-- this must be here -->
 			</div>
 
 			<!-- Gallery -->
