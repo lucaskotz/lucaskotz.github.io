@@ -310,6 +310,29 @@
       nav { padding: 0 1rem; }
       .social-links { gap: 0.6rem; }
     }
+	
+	.gallery-grid figure {
+	  margin: 0;
+	}
+	.gallery-grid figure img {
+	  width: 100%;
+	  border-radius: 6px 6px 0 0;
+	  aspect-ratio: 4/3;
+	  object-fit: cover;
+	  cursor: pointer;
+	  display: block;
+	}
+	.gallery-grid figure figcaption {
+	  font-size: 0.75rem;
+	  color: var(--muted);
+	  line-height: 1.5;
+	  padding: 0.5rem 0.4rem;
+	  text-align: center;
+	  background: var(--white);
+	  border: 1px solid var(--cream2);
+	  border-top: none;
+	  border-radius: 0 0 6px 6px;
+	}
   </style>
 </head>
 <body>
@@ -713,27 +736,57 @@
       <!-- L2 SENSITIVITY -->
       <div class="sub-section" id="sub-research-l2">
         <div class="content-card">
-          <h3>L2 Sensitivity Analysis</h3>
+          <h3>L2 Sensitivity</h3>
           <p>
-            The L2 sensitivity methodology provides a rigorous framework for assessing how
-            individual data points or datasets influence the outcome of global QCD analyses.
-            By examining the second-order (L2) response of the χ² function, one can quantify
-            the statistical pull of each observable on extracted parton distributions or other
-            fitted quantities.
-          </p>
-          <p>
-            This work extends existing sensitivity measures and applies them to [specific
-            context — e.g., polarized parton distributions], providing actionable guidance
-            for future experimental programs at facilities such as [EIC / Jefferson Lab / etc.].
+            Understanding how each dataset influences a model is critical, especially when combining multiple datasets, where conflicting signals can obscure important patterns. That’s why it’s essential to evaluate dataset impact even after a model has been built. 
+			<p>
+			Recently, a new technique called <b>L2 sensitivity</b> was developed to measure how much each dataset influences a model’s fit (<a href="https://arxiv.org/abs/1904.00022" target="_blank">link to study</a>). In essence, it checks how much the model’s error (χ² goodness-of-fit) changes when a PDF parameter is adjusted by one standard deviation.
+			<p>
+			However, the standard L2 sensitivity method only works if the dataset is already part of the model’s analysis, which means it can’t directly evaluate brand-new or external data.
+			<p>
+			To solve that problem, I developed a more flexible procedure that applies L2 sensitivity to any dataset, even if it’s not part of the original model. I integrated this solution into the open-source <b>xFitter</b> tool and validated it with real data (as documented in my publication at <a href="https://arxiv.org/abs/2401.11350" target="_blank">arXiv</a>).
+			<p>
+			Files related to the L2 sensitivity extraction method can be found <a href="https://github.com/lucaskotz/L2-xFitter" target="_blank">here</a>.
+			
+		  <h3>Baseline Comparison</h3>
+		  <p>
+			I verified my method by comparing its results to an earlier study on how datasets affect proton PDFs. My results closely matched the prior study’s findings, confirming that my approach works reliably.
+			<p>
+			There were a few minor differences because I defined the chi-squared metric slightly differently and handled heavy-quark data in another way. These technical details only caused small changes in the L2 sensitivity results (as a function of the parton’s momentum fraction <i>x</i>).
+			<p>
+			
+		  <!-- Gallery -->
+			<div class="gallery-grid">
+			<img src="docs/L2/Screenshot+2025-05-29+113338.webp" onclick="openLightbox(this)">
+			<img src="docs/L2/Screenshot+2025-05-29+113501.webp" onclick="openLightbox(this)">
+			<img src="docs/L2/Screenshot+2025-05-29+113435.webp" onclick="openLightbox(this)">
+			<img src="docs/L2/Screenshot+2025-05-29+111716.webp" onclick="openLightbox(this)">
+			<img src="docs/L2/Screenshot+2025-05-29+111640.webp" onclick="openLightbox(this)">
+			<img src="docs/L2/Screenshot+2025-05-29+113528.webp" onclick="openLightbox(this)">
+			<img src="docs/L2/Screenshot+2025-05-29+113413.webp" onclick="openLightbox(this)">
+			</div>
+		  <p>
+		  <h3>Exploring New Datasets</h3>
+		  <p>
+			After proving the method, I applied the L2 sensitivity method to new datasets whose influence hadn’t been examined before. Traditionally, to evaluate a new dataset’s influence, you’d have to spend <b>weeks</b> integrating it into the model’s codebase.
+			<p>
+			In contrast, my approach can assess a dataset’s impact in just a few <i><b>hours</b></i> and requires no changes to the core code. This makes it possible to quickly screen new data for its relevance (or redundancy), greatly speeding up the analysis pipeline.
+			<p>
+			
+			<!-- Gallery -->
+			<div class="gallery-grid">
+			<img src="docs/L2/Screenshot+2025-05-29+114824.webp" onclick="openLightbox(this)">
+			<img src="docs/L2/Screenshot+2025-05-29+114846.webp" onclick="openLightbox(this)">
+			<img src="docs/L2/Screenshot+2025-05-29+114911.webp" onclick="openLightbox(this)">
+			</div>
+		  </p>
+
+			
           </p>
           <div style="margin-top:1rem;">
             <span class="tag">PDF Fits</span><span class="tag">Global Analysis</span>
             <span class="tag">Statistical Methods</span><span class="tag">Phenomenology</span>
           </div>
-        </div>
-        <div class="content-card" style="border-left-color:var(--navy);">
-          <h3>Methodology Summary</h3>
-          <p>[Summarize the core equations or steps of your methodology. Reference relevant papers, provide figures, or outline the algorithm in plain language accessible to a broad physics audience.]</p>
         </div>
       </div>
 
@@ -742,24 +795,34 @@
         <div class="content-card">
           <h3>Data Visualization</h3>
           <p>
-            Effective communication of high-dimensional physics datasets requires purpose-built
-            visualization tools. This project encompasses a suite of interactive dashboards
-            and publication-quality figures developed to explore lattice QCD outputs,
-            sensitivity maps, and global fit results.
+            During my PhD, I relied heavily on data visualization to turn complex results into clear, accessible insights. I often analyzed parton distribution functions (PDFs) to predict measurable outcomes, and I had to create clear, informative charts both for technical reports and for communicating with non-specialist stakeholders.
           </p>
           <p>
-            Tools are built using Python (Matplotlib, Plotly) and D3.js for web-based
-            interactive exploration. A particular focus is enabling physicists to interactively
-            probe parameter spaces and understand correlations among fitted observables.
+            Below are selected examples showcasing how I visualized data from my studies. Most of these figures were produced using Mathematica with the ManeParse package or CERN’s ROOT framework, widely used in particle physics. You can find more information about ManeParse <a href="https://ncteq.hepforge.org/mma/index.html" target="_blank">here</a> and ROOT <a href="https://root.cern/" target="_blank">here</a>.
           </p>
           <div style="margin-top:1rem;">
-            <span class="tag">D3.js</span><span class="tag">Plotly</span>
-            <span class="tag">Matplotlib</span><span class="tag">Interactive</span>
+            <span class="tag">Mathematica</span><span class="tag">Plotly</span><span class="tag">CERN ROOT</span>
+            <span class="tag">Matplotlib</span><span class="tag">Interactive Plots</span>
           </div>
         </div>
         <div class="content-card" style="border-left-color:var(--navy);">
           <h3>Gallery</h3>
-          <p>[Embed or link representative figures and interactive demos here. Describe what each visualization shows and what physics insight it conveys. You can insert &lt;img&gt; tags or &lt;iframe&gt; embeds pointing to hosted demos.]</p>
+          <p>
+			<div class="gallery-grid">
+				<figure>
+					<img src="image1.jpg" data-caption="L2 sensitivity plots as a function of momentum fraction x." onclick="openLightbox(this)">
+					<figcaption>L2 sensitivity plots as a function of momentum fraction x.</figcaption>
+				</figure>
+				<figure>
+					<img src="image2.jpg" data-caption="Data coverage of experiments in the L2 sensitivity study." onclick="openLightbox(this)">
+					<figcaption>Data coverage of experiments in the L2 sensitivity study.</figcaption>
+				</figure>
+				<figure>
+					<img src="image3.jpg" data-caption="FantoPDF momentum fractions at Q=1.4 GeV." onclick="openLightbox(this)">
+					<figcaption>FantoPDF momentum fractions at Q=1.4 GeV.</figcaption>
+				</figure>
+			</div>
+		  </p>
         </div>
       </div>
 
@@ -849,6 +912,19 @@
 			<strong>External:</strong> Prof. Aurore Courtoy, Universidad Nacional Autónoma de México<br/>
             <strong>Member:</strong> Prof. Allison Deiana, Southern Methodist University<br/>
             <strong>Member (Chair):</strong> Prof. Matthew Klein, Southern Methodist University<br/>
+          </p>
+        </div>
+       
+      </div>
+	  
+	  <div class="grid-1">
+        <div class="content-card" style="border-left-color:var(--navy);">
+          <h3>Selected Presentations</h3>
+          <p>
+			<b>Fall 2024 Joint Meeting of the Texas American Physics Society</b>, October 18, 2024: <a href="https://meetings.aps.org/Meeting/TSF24/Session/H04.4" target="_blank">Bézier curve parameterization for pion PDF</a>
+			<b>CTEQ Spring meeting 2024</b>, June 4, 2024: <a href="https://indico.cern.ch/event/1421249/contributions/5978705/" target="_blank">Recent work on L2 sensitivities and Bèzier PDF parametrizations in xFitter</a>
+			<b>xFitter External Meeting 2023</b>, May 3, 2023: <a href="https://indico.cern.ch/event/1273738/#20-bezier-curves-and-pion-pdfs" target="_blank">Bézier curves and pion PDFs with xFitter</a>
+			<b>DIS2023, March 29>/b>, 2023: <a href="https://indico.cern.ch/event/1199314/contributions/5193101/" target="_blank">Bézier curve parametrization for pion PDFs</a>
           </p>
         </div>
        
